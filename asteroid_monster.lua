@@ -105,7 +105,6 @@ if not mobs.custom_spawn_monster then
 	mobs:spawn({
 		name = "mobs_monster:asteroid_monster",
 		nodes = {"asteroid:reddust", "asteroid:redstone", "asteroid:redgravel"},
-		min_light = 3,
 		max_light = 8,
 		chance = 7000,
 		min_height = 5000,
