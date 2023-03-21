@@ -62,5 +62,10 @@ if minetest.get_modpath("lucky_block") then
 	dofile(path .. "lucky_block.lua")
 end
 
+-- Other Worlds
+if minetest.get_modpath("other_worlds") then
+	dofile(path .. "asteroid_monster.lua")
+end
+
 
 print ("[MOD] Mobs Redo Monsters loaded")
