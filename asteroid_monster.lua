@@ -20,6 +20,7 @@ mobs:register_mob("mobs_monster:asteroid_monster", {
 	type = "monster",
 	passive = false,
 	attack_type = "dogfight",
+	blood_amount = 0,
 	pathfinding = true,
 	reach = 2,
 	damage = 3,
@@ -110,7 +111,7 @@ if not mobs.custom_spawn_monster then
 		chance = 7000,
 		min_height = 5000,
 		max_height = 31000,
-
+		blood_amount = 0,
 		active_object_count = 8
 	})
 end
