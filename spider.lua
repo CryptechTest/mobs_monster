@@ -18,23 +18,20 @@ local spider_types = {
 		skins = {"mobs_spider_snowy.png"},
 		docile = true,
 		drops = nil,
-		blood_texture = "default_snow.png"
 	},
 
 	{	nodes = {"default:dirt_with_rainforest_litter", "default:jungletree"},
 		skins = {"mobs_spider_orange.png"},
 		docile = true,
 		drops = nil,
-		shoot = true,
-		blood_texture = "default_coral_orange.png"
+		shoot = true
 	},
 
 	{	nodes = {"default:stone", "default:gravel"},
 		skins = {"mobs_spider_grey.png"},
 		docile = nil,
 		drops = nil,
-		small = true,
-		blood_texture = "default_stone.png"
+		small = true
 	},
 
 	{	nodes = {"default:mese", "default:stone_with_mese"},
@@ -42,8 +39,7 @@ local spider_types = {
 		docile = nil,
 		drops = {
 			{name = "farming:string", chance = 1, min = 0, max = 2},
-			{name = "default:mese_crystal_fragment", chance = 2, min = 1, max = 4}},
-		blood_texture = "default_mese_crystal_fragment.png"
+			{name = "default:mese_crystal_fragment", chance = 2, min = 1, max = 4}}
 	},
 
 	{	nodes = {"ethereal:crystal_dirt", "ethereal:crystal_spike"},
@@ -51,8 +47,7 @@ local spider_types = {
 		docile = true,
 		drops = {
 			{name = "farming:string", chance = 1, min = 0, max = 2},
-			{name = "ethereal:crystal_spike", chance = 15, min = 1, max = 2}},
-		blood_texture = "ethereal_crystal_spike.png"
+			{name = "ethereal:crystal_spike", chance = 15, min = 1, max = 2}}
 	}
 }
 
@@ -123,7 +118,7 @@ mobs:register_mob("mobs_monster:spider", {
 			if minetest.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
-				self.object:set_properties({textures = tmp.skins, blood_texture = tmp.blood_texture})
+				self.object:set_properties({textures = tmp.skins})
 				self.docile_by_day = tmp.docile
 
 				if tmp.drops then
