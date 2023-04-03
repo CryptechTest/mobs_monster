@@ -14,6 +14,7 @@ local guard_types = {
 			{name = "mobs:leather", chance = 2, min = 0, max = 2},
 			{name = "default:diamond", chance = 4, min = 0, max = 2},
 		},
+		blood_texture = "default_ice.png",
 	},
 
 	{	nodes = {
@@ -26,6 +27,7 @@ local guard_types = {
 			{name = "mobs:leather", chance = 2, min = 0, max = 2},
 			{name = "default:mese_crystal", chance = 4, min = 0, max = 2},
 		},
+		blood_texture = "default_sand.png",
 	}
 }
 
@@ -91,9 +93,9 @@ mobs:register_mob("mobs_monster:land_guard", {
 			tmp = guard_types[n]
 
 			if minetest.find_node_near(pos, 1, tmp.nodes) then
-
+				
 				self.base_texture = { tmp.skins[math.random(#tmp.skins)] }
-				self.object:set_properties({textures = self.base_texture})
+				self.object:set_properties({textures = self.base_texture, blood_texture = tmp.blood_texture})
 				self.docile_by_day = tmp.docile
 
 				if tmp.drops then

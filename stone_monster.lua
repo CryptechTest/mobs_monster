@@ -33,6 +33,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 		{"mobs_stone_monster.png"},
 		{"mobs_stone_monster2.png"} -- by AMMOnym
 	},
+	blood_texture = "default_stone.png",
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_stonemonster"

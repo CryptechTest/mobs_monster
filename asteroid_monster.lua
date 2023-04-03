@@ -19,8 +19,7 @@ local stone_types = {
 mobs:register_mob("mobs_monster:asteroid_monster", {
 	type = "monster",
 	passive = false,
-	attack_type = "dogfight",
-	blood_amount = 0,
+	attack_type = "dogfight",	
 	pathfinding = true,
 	reach = 2,
 	damage = 3,
@@ -34,6 +33,7 @@ mobs:register_mob("mobs_monster:asteroid_monster", {
 		{"mobs_asteroid_monster.png"},
 		{"mobs_asteroid_monster2.png"} -- by AMMOnym
 	},
+	blood_texture = "asteroid_redcobble.png",
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_stonemonster"
