@@ -1,8 +1,9 @@
 
-local S = mobs.intllib_monster
+local S = core.get_translator("mobs_monster")
 
 -- custom particle effects
-local effect = function(pos, amount, texture, min_size, max_size, radius, gravity, glow)
+
+local function effect(pos, amount, texture, min_size, max_size, radius, gravity, glow)
 
 	radius = radius or 2
 	min_size = min_size or 0.5
@@ -10,7 +11,7 @@ local effect = function(pos, amount, texture, min_size, max_size, radius, gravit
 	gravity = gravity or -10
 	glow = glow or 0
 
-	minetest.add_particlespawner({
+	core.add_particlespawner({
 		amount = amount,
 		time = 0.25,
 		minpos = pos,
@@ -27,7 +28,6 @@ local effect = function(pos, amount, texture, min_size, max_size, radius, gravit
 		glow = glow
 	})
 end
-
 
 -- Sand Monster by PilzAdam
 
@@ -52,32 +52,28 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	},
 	blood_texture = "default_desert_sand.png",
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_sandmonster"
-	},
+	sounds = {random = "mobs_sandmonster"},
 	walk_velocity = 1.5,
 	run_velocity = 4,
 	view_range = 8,
 	jump = true,
 	floats = 0,
 	drops = {
-		{name = "default:desert_sand", chance = 1, min = 3, max = 5}
+		{name = "default:silver_sand", chance = 2, min = 1, max = 2},
+		{name = "default:desert_sand", chance = 2, min = 1, max = 2},
+		{name = "default:sand", chance = 2, min = 1, max = 2},
+		{name = "default:clay_lump", chance = 2, min = 0, max = 1}
 	},
 	water_damage = 3,
 	lava_damage = 4,
 	light_damage = 0,
 	fear_height = 4,
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 39,
-		walk_start = 41,
-		walk_end = 72,
-		run_start = 74,
-		run_end = 105,
-		punch_start = 74,
-		punch_end = 105
+		speed_normal = 15, speed_run = 15,
+		stand_start = 0, stand_end = 39,
+		walk_start = 41, walk_end = 72,
+		run_start = 74, run_end = 105,
+		punch_start = 74, punch_end = 105
 	},
 	immune_to = {
 		{"default:shovel_wood", 3}, -- shovels deal more damage to sand monster
@@ -90,7 +86,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 --[[
 	custom_attack = function(self, p)
 		local pos = self.object:get_pos()
-		minetest.add_item(pos, "default:sand")
+		core.add_item(pos, "default:sand")
 	end,
 ]]
 	on_die = function(self, pos)
@@ -116,6 +112,8 @@ mobs:register_mob("mobs_monster:sand_monster", {
 ]]
 })
 
+-- where to spawn
+
 if not mobs.custom_spawn_monster then
 
 	mobs:spawn({
@@ -127,9 +125,11 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:sand_monster", S("Sand Monster"),
 		"default_desert_sand.png", 1)
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:sand_monster", "mobs_monster:sand_monster") -- compatibility
+mobs:alias_mob("mobs:sand_monster", "mobs_monster:sand_monster")
