@@ -1,3 +1,6 @@
+
+-- web trap schematic
+
 local web = {name = "mobs:cobweb"}
 local web_trap = {
 	size = {x = 3, y = 3, z = 3},
@@ -20,6 +23,8 @@ lucky_block:add_schematics({
 	{"webtrap", web_trap, {x = 1, y = 0, z = 1}},
 })
 
+-- add lucky blocks
+
 lucky_block:add_blocks({
 	{"sch", "webtrap", 1, true},
 	{"spw", "mobs:dungeon_master", 1, nil, nil, 3, "Billy"},
@@ -32,6 +37,7 @@ lucky_block:add_blocks({
 	{"spw", "mobs:spider", 5},
 	{"spw", "mobs:mese_monster", 2},
 	{"spw", "mobs:lava_flan", 3},
+	{"spw", "mobs_monster:land_guard", 2},
 	{"nod", "default:chest", 0, {
 		{name = "mobs:lava_orb", max = 1}}},
 })

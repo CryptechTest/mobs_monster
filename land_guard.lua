@@ -1,6 +1,7 @@
 
-local S = mobs.intllib_monster
+-- translation and custom land guard types
 
+local S = core.get_translator("mobs_monster")
 
 local guard_types = {
 
@@ -37,7 +38,7 @@ mobs:register_mob("mobs_monster:land_guard", {
 	attack_type = "dogfight",
 	group_attack = true,
 	reach = 3,
-	damage = 15,
+	damage = 12,
 	hp_min = 30,
 	hp_max = 65,
 	armor = 50,
@@ -51,9 +52,7 @@ mobs:register_mob("mobs_monster:land_guard", {
 		{"mobs_land_guard3.png"}
 	},
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_dungeonmaster",
-	},
+	sounds = {random = "mobs_dungeonmaster"},
 	walk_velocity = 1.5,
 	run_velocity = 3.4,
 	jump = true,
@@ -70,14 +69,10 @@ mobs:register_mob("mobs_monster:land_guard", {
 	light_damage = 0,
 	fear_height = 8,
 	animation = {
-		stand_start = 0,
-		stand_end = 19,
-		walk_start = 20,
-		walk_end = 35,
-		punch_start = 36,
-		punch_end = 48,
-		speed_normal = 15,
-		speed_run = 20,
+		stand_start = 0, stand_end = 19,
+		walk_start = 20, walk_end = 35,
+		punch_start = 36, punch_end = 48,
+		speed_normal = 15, speed_run = 20,
 	},
 
 	-- check surrounding nodes and spawn a specific guard
@@ -90,15 +85,13 @@ mobs:register_mob("mobs_monster:land_guard", {
 
 			tmp = guard_types[n]
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = { tmp.skins[math.random(#tmp.skins)] }
 				self.object:set_properties({textures = self.base_texture})
 				self.docile_by_day = tmp.docile
 
-				if tmp.drops then
-					self.drops = tmp.drops
-				end
+				if tmp.drops then self.drops = tmp.drops end
 
 				return true
 			end
@@ -108,20 +101,23 @@ mobs:register_mob("mobs_monster:land_guard", {
 	end,
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:land_guard",
-	nodes = {
-		"default:snow", "default:ice", "default:stone",
-		"default:dry_dirt_with_dry_grass", "ethereal:dry_dirt"
-	},
-	max_light = 7,
-	chance = 25000,
-	min_height = 0,
-	active_object_count = 1,
-})
+
+	mobs:spawn({
+		name = "mobs_monster:land_guard",
+		nodes = {
+			"default:snow", "default:ice", "default:stone",
+			"default:dry_dirt_with_dry_grass", "ethereal:dry_dirt"
+		},
+		max_light = 7,
+		chance = 25000,
+		min_height = 0,
+		active_object_count = 1,
+	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:land_guard", S("Land Guard"), "default_ice.png", 1)

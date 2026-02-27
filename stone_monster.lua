@@ -1,5 +1,7 @@
 
-local S = mobs.intllib_monster
+-- translation and custom stone monster types
+
+local S = core.get_translator("mobs_monster")
 
 local stone_types = {
 
@@ -10,9 +12,17 @@ local stone_types = {
 			{name = "default:iron_lump", chance = 5, min = 0, max = 2},
 			{name = "default:gold_lump", chance = 5, min = 0, max = 2}
 		}
+	},
+
+	{	nodes = {"default:sandstone"},
+		skins = {"mobs_stone_monster4.png"},
+		drops = {
+			{name = "default:sandstone", chance = 1, min = 0, max = 2},
+			{name = "default:tin_lump", chance = 5, min = 0, max = 2},
+			{name = "default:copper_lump", chance = 5, min = 0, max = 2}
+		}
 	}
 }
-
 
 -- Stone Monster by PilzAdam
 
@@ -33,11 +43,8 @@ mobs:register_mob("mobs_monster:stone_monster", {
 		{"mobs_stone_monster.png"},
 		{"mobs_stone_monster2.png"} -- by AMMOnym
 	},
-	blood_texture = "default_stone.png",
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_stonemonster"
-	},
+	sounds = {random = "mobs_stonemonster"},
 	walk_velocity = 1,
 	run_velocity = 2,
 	jump_height = 0,
@@ -46,6 +53,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 	view_range = 10,
 	drops = {
 		{name = "default:cobble", chance = 1, min = 0, max = 2},
+		{name = "default:gravel", chance = 1, min = 0, max = 2},
 		{name = "default:coal_lump", chance = 3, min = 0, max = 2},
 		{name = "default:iron_lump", chance = 5, min = 0, max = 2}
 	},
@@ -53,16 +61,11 @@ mobs:register_mob("mobs_monster:stone_monster", {
 	lava_damage = 1,
 	light_damage = 0,
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63
+		speed_normal = 15, speed_run = 15,
+		stand_start = 0, stand_end = 14,
+		walk_start = 15, walk_end = 38,
+		run_start = 40, run_end = 63,
+		punch_start = 40, punch_end = 63
 	},
 	immune_to = {
 		{"default:pick_wood", 0}, -- wooden pick doesnt hurt stone monster
@@ -83,14 +86,12 @@ mobs:register_mob("mobs_monster:stone_monster", {
 
 			tmp = stone_types[n]
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
 
-				if tmp.drops then
-					self.drops = tmp.drops
-				end
+				if tmp.drops then self.drops = tmp.drops end
 
 				return true
 			end
@@ -100,20 +101,24 @@ mobs:register_mob("mobs_monster:stone_monster", {
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
 
 	mobs:spawn({
 		name = "mobs_monster:stone_monster",
-		nodes = {"default:stone", "default:desert_stone", "default:sandstone"},
+		nodes = {"default:stone", "default:desert_stone", "default:sandstone",
+				"default:permafrost_with_stones"},
 		max_light = 7,
 		chance = 7000,
 		max_height = 0
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:stone_monster", S("Stone Monster"), "default_stone.png", 1)
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:stone_monster", "mobs_monster:stone_monster") -- compatibility
+mobs:alias_mob("mobs:stone_monster", "mobs_monster:stone_monster")
