@@ -25,7 +25,7 @@ local spider_types = {
 		drops = nil
 	},
 
-	{	nodes = {"default:dirt_with_rainforest_litter", "default:jungletree"},
+	{	nodes = {"default:dirt_with_rainforest_litter", "default:jungletree", "default:sandstone", "default:desert_sandstone"},
 		skins = {"mobs_spider_orange.png"},
 		docile = true,
 		drops = nil,
@@ -47,7 +47,7 @@ local spider_types = {
 			{name = "default:mese_crystal_fragment", chance = 2, min = 1, max = 4}}
 	},
 
-	{	nodes = {"ethereal:crystal_dirt", "ethereal:crystal_spike"},
+	{	nodes = {"ethereal:crystal_dirt", "ethereal:crystal_spike", "livingcaves:lichycaverock"},
 		skins = {"mobs_spider_crystal.png"},
 		docile = true, immune_to = {{"ethereal:crystal_spike", 0}},
 		drops = {
@@ -243,7 +243,7 @@ if not mobs.custom_spawn_monster then
 	-- below ground spawn
 	mobs:spawn({
 		name = "mobs_monster:spider",
-		nodes = {"default:stone_with_mese", "default:mese", "default:stone"},
+		nodes = {"default:stone_with_mese", "default:mese", "default:stone", "default:sandstone", "default:desert_sandstone"},
 		min_light = 0,
 		max_light = 7,
 		chance = 7000,

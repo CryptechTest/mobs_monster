@@ -118,7 +118,7 @@ if not mobs.custom_spawn_monster then
 
 	mobs:spawn({
 		name = "mobs_monster:sand_monster",
-		nodes = {"default:desert_sand"},
+		nodes = {"default:desert_sand", "badlands:red_sand", "saltd:barren"},
 		chance = 7000,
 		active_object_count = 2,
 		min_height = 0
